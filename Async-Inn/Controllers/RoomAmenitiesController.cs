@@ -37,7 +37,7 @@ namespace Async_Inn.Controllers
             var roomAmenity = await _context.RoomAmenities
             .Include(r => r.Amenity)
             .Include(r => r.Room)
-            .FirstOrDefaultAsync(m => m.RoomID == id);
+            .FirstOrDefaultAsync(m => m.AmenityID == id);
             if (roomAmenity == null)
             {
                 return NotFound();
@@ -49,8 +49,8 @@ namespace Async_Inn.Controllers
         // GET: RoomAmenities/Create
         public IActionResult Create()
         {
-            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "ID");
-            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID");
+            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "Name");
+            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace Async_Inn.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "ID", roomAmenity.AmenityID);
-            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", roomAmenity.RoomID);
+            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "Name", roomAmenity.AmenityID);
+            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "Name", roomAmenity.RoomID);
             return View(roomAmenity);
         }
 
@@ -85,8 +85,8 @@ namespace Async_Inn.Controllers
             {
                 return NotFound();
             }
-            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "ID", roomAmenity.AmenityID);
-            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", roomAmenity.RoomID);
+            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "Name", roomAmenity.AmenityID);
+            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "Name", roomAmenity.RoomID);
             return View(roomAmenity);
         }
 
@@ -97,7 +97,7 @@ namespace Async_Inn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AmenityID,RoomID")] RoomAmenity roomAmenity)
         {
-            if (id != roomAmenity.RoomID)
+            if (id != roomAmenity.AmenityID)
             {
                 return NotFound();
             }
@@ -111,7 +111,7 @@ namespace Async_Inn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RoomAmenityExists(roomAmenity.RoomID))
+                    if (!RoomAmenityExists(roomAmenity.AmenityID))
                     {
                         return NotFound();
                     }
@@ -122,8 +122,8 @@ namespace Async_Inn.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "ID", roomAmenity.AmenityID);
-            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", roomAmenity.RoomID);
+            ViewData["AmenityID"] = new SelectList(_context.Amenities, "ID", "Name", roomAmenity.AmenityID);
+            ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "Name", roomAmenity.RoomID);
             return View(roomAmenity);
         }
 
@@ -138,7 +138,7 @@ namespace Async_Inn.Controllers
             var roomAmenity = await _context.RoomAmenities
                 .Include(r => r.Amenity)
                 .Include(r => r.Room)
-                .FirstOrDefaultAsync(m => m.RoomID == id);
+                .FirstOrDefaultAsync(m => m.AmenityID == id);
             if (roomAmenity == null)
             {
                 return NotFound();
