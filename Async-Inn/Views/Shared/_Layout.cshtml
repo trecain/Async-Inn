@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="~/StyleSheet.css" />
+</head>
+
+<body>
+    <h1>Async Inn Hotel</h1>
+    <div class="topnav">
+        <a href="/">HOME</a>
+        <div class="dropdown">
+            <button class="dropbtn">
+                HOTELS
+            </button>
+            <div class="dropdown-content">
+                <a href="/Hotels/Create">Add New Hotel</a>
+                <a href="/Hotels">View Hotels</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                ROOMS
+            </button>
+            <div class="dropdown-content">
+                <a href="/Rooms/Create">Add New Room</a>
+                <a href="/Rooms">View Rooms</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn">
+                AMENITIES
+            </button>
+            <div class="dropdown-content">
+                <a href="/Amenities/Create">Add New Amenity</a>
+                <a href="/Amenities">View Amenities</a>
+            </div>
+        </div>
+        <a href="/RoomAmenities">ROOM AMENITIES</a>
+        <a href="/HotelRooms">HOTEL ROOMS</a>
+    </div>
+    <div class="imgDiv">
+        <img src="http://blog.laterooms.com/wp-content/uploads/2011/10/LuxuryUpgrade.jpg" alt="Image result for free hotel pictures"/>
+    </div>
+</body>
+</html>
+@RenderBody()
+@RenderSection("scripts", required: false)+
+
+

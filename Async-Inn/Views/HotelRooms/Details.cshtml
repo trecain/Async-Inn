@@ -1,0 +1,42 @@
+﻿@model Async_Inn.Models.HotelRoom
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+}
+
+<h2>Hotel Room Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hotel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hotel.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Room.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PetFriendly)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PetFriendly)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
