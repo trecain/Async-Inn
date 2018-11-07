@@ -2,10 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>a44b59ec-600d-41a8-b0c2-cb2827ec8561</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Compile Remove="Migrations\20181106020406_Initial.cs" />
+    <Compile Remove="Migrations\20181106020406_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20181106020538_Initial.cs" />
+    <Compile Remove="Migrations\20181106020538_Initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
