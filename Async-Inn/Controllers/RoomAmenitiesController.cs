@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Inn.Data;
 using Async_Inn.Models;
+using Async_Inn.Models.Interfaces;
 
 namespace Async_Inn.Controllers
 {
     public class RoomAmenitiesController : Controller
     {
         private readonly HotelDbContext _context;
+        private readonly IRoom _room; 
 
-        public RoomAmenitiesController(HotelDbContext context)
+        public RoomAmenitiesController(HotelDbContext context, IRoom room)
         {
             _context = context;
+            _room = room;
         }
 
         // GET: RoomAmenities
@@ -27,17 +30,14 @@ namespace Async_Inn.Controllers
         }
 
         // GET: RoomAmenities/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? amenitiesID, int? roomID)
         {
-            if (id == null)
+            if (amenitiesID == null && roomID == null)
             {
                 return NotFound();
             }
 
-            var roomAmenity = await _context.RoomAmenities
-            .Include(r => r.Amenity)
-            .Include(r => r.Room)
-            .FirstOrDefaultAsync(m => m.AmenityID == id);
+            var roomAmenity = await _room.GetRoomAmenities(amenitiesID, roomID);
             if (roomAmenity == null)
             {
                 return NotFound();
@@ -73,14 +73,14 @@ namespace Async_Inn.Controllers
         }
 
         // GET: RoomAmenities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? amenityID, int? roomID)
         {
-            if (id == null)
+            if (amenityID == null && roomID == null)
             {
                 return NotFound();
             }
 
-            var roomAmenity = await _context.RoomAmenities.FindAsync(id);
+            var roomAmenity = await _room.GetRoomAmenities(amenityID, roomID);
             if (roomAmenity == null)
             {
                 return NotFound();
@@ -111,7 +111,7 @@ namespace Async_Inn.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RoomAmenityExists(roomAmenity.AmenityID))
+                    if (!RoomAmenityExists(roomAmenity.AmenityID, roomAmenity.RoomID))  
                     {
                         return NotFound();
                     }
@@ -157,9 +157,9 @@ namespace Async_Inn.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RoomAmenityExists(int id)
+        private bool RoomAmenityExists(int amenitiesID, int roomID)
         {
-            return _context.RoomAmenities.Any(e => e.RoomID == id);
+            return _context.RoomAmenities.Any( x => x.AmenityID == amenitiesID && x.RoomID == roomID);
         }
     }
 }
