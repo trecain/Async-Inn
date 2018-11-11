@@ -7,10 +7,11 @@ namespace Async_Inn.Models.Interfaces
 {
     public interface IAmenities
     {
+        // IAmenities interface required methods
         Task AddAmenity(Amenity amenity);
         Task UpdateAmenity(Amenity amenity);
         Task DeleteAmenity(int id);
-        Task<List<Amenity>> GetAmenities();
+        Task<IEnumerable<Amenity>> GetAmenities();
         Task<Amenity> GetAmenity(int? id);
     }
 }
