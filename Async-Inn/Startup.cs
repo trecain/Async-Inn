@@ -31,7 +31,7 @@ namespace Async_Inn
             services.AddMvc();
             services.AddDbContext<HotelDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionDB"));
             });
             services.AddTransient<IHotel, HotelService>();
             services.AddTransient<IRoom, RoomService>();
