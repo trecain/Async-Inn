@@ -38,9 +38,8 @@ namespace Async_Inn.Models.Services
         /// </summary>
         /// <param name="id">room id to delete</param>
         /// <returns></returns>
-        public async Task DeleteRoom(int id)
+        public async Task DeleteRoom(Room room)
         {
-            Room room = await GetRoom(id);
             _context.Rooms.Remove(room);
             await _context.SaveChangesAsync();
         }

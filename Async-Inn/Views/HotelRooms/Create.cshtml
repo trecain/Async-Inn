@@ -18,7 +18,7 @@
            
             <div class="form-group">
                 <label asp-for="RoomID" class="control-label"></label>
-                <input asp-for="RoomID" class="form-control" />
+                <select asp-for="RoomID" class="form-control" asp-items="ViewBag.RoomID"></select>
                 <span asp-validation-for="RoomID" class="text-danger"></span>
             </div>
 
@@ -49,7 +49,6 @@
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">View All Rooms</a>
 </div>

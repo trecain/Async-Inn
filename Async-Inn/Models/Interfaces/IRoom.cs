@@ -10,7 +10,7 @@ namespace Async_Inn.Models.Interfaces
         // IRoom interface required methods
         Task AddRoom(Room room);
         Task UpdateRoom(Room room);
-        Task DeleteRoom(int id);
+        Task DeleteRoom(Room room);
         Task<IEnumerable<Room>> GetRooms();
         Task<Room> GetRoom(int? id);
 

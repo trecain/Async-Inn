@@ -64,6 +64,11 @@ namespace Async_Inn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HotelID,RoomID,RoomNumber,Rate,PetFriendly")] HotelRoom hotelRoom)
         {
+            if (_context.HotelRooms.Any(hr => hr.RoomNumber == hotelRoom.RoomNumber))
+            {
+                ModelState.AddModelError("", $"{hotelRoom.RoomNumber} already exists.");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(hotelRoom);
