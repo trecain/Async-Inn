@@ -7,9 +7,8 @@
 
 <h2>Hotel Rooms</h2>
 
-<p>
-    <a class="button" asp-action="Create">Add New Hotel Room</a>
-</p>
+<a asp-action="Create">Add New Hotel Room</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -45,10 +44,12 @@
                     @Html.DisplayFor(modelItem => item.Hotel.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.RoomID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.RoomID })
+                    @Html.ActionLink("Edit", "Edit", new { item.HotelID, item.RoomID }) |
+                    @Html.ActionLink("Details", "Details", new { item.HotelID, item.RoomID }) |
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<a asp-action="../Home/Index">Back to main page</a>
